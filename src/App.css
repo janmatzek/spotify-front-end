@@ -36,3 +36,78 @@
     transform: rotate(360deg);
   }
 }
+
+.app-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 1400px;
+  height: 700px;
+}
+
+.scorecard-container {
+  display: flex; /* Use Flexbox */
+  width: 100%;
+  height: 150px;
+  justify-content: center; /* Align items to the center horizontally */
+  /* Leave the container background transparent */
+  padding-bottom: 20px; /* Add padding for spacing */
+}
+
+.scorecard {
+  width: 150px; /* Set a fixed width for each scorecard */
+  background-color: #f2f2f2; /* Light gray background for scorecards */
+  padding: 20px;
+  margin: 10px; /* Add some margin for spacing */
+  text-align: center; /* Center align text content */
+}
+
+/* container containing the two columns */
+.column-container {
+  height: 300px;
+  width: 100%;
+}
+
+/* Left column containing doughnuts and bar chart */
+.left-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 600px;
+  padding-left: 5%;
+}
+
+/* Right column containing the table */
+.right-column {
+  flex: 1;
+  width: 50%;
+  height: 600px;
+  padding-left: 2.5%;
+  padding-right: 5%;
+}
+
+.row-container {
+  width: 100%;
+}
+
+.doughnut-charts-container {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.doughnut-chart {
+  width: 27%;
+}
+
+.bar-chart-container {
+  height: 100%;
+  margin-bottom: 20px;
+  padding-bottom: 25px;
+  width: 100%;
+}
+
+.table-container {
+  height: 80vh;
+}
