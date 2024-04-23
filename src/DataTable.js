@@ -61,7 +61,7 @@ const DataTable = () => {
                 <Td>{item.artist_name}</Td>
                 <Td>
                   <Link href={item.track_url} isExternal>
-                    Listen 🎧
+                    🎵
                   </Link>
                 </Td>
               </Tr>
