@@ -55,7 +55,7 @@
 }
 
 .scorecard {
-  width: 150px; /* Set a fixed width for each scorecard */
+  width: 160px; /* Set a fixed width for each scorecard */
   background-color: #f2f2f2; /* Light gray background for scorecards */
   padding: 20px;
   margin: 10px; /* Add some margin for spacing */
