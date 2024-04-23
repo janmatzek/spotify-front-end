@@ -51,6 +51,7 @@
   height: 150px;
   justify-content: center; /* Align items to the center horizontally */
   /* Leave the container background transparent */
+  padding-top: 10px;
   padding-bottom: 20px; /* Add padding for spacing */
 }
 
