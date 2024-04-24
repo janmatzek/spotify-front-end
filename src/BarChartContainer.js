@@ -35,13 +35,20 @@ const BarChartContainer = () => {
       const data = await response.json();
 
       // Process the data for the bar chart
-      const labels = data.map((item) => item.hour - timezoneOffset);
-      // const labels = data.map((item) => item.hour);
+      const adjustedLabels = data.map((item) => {
+        let adjustedHour = item.hour - timezoneOffset;
+        if (adjustedHour < 0) {
+          adjustedHour += 24; // Adjust for negative hours
+        } else if (adjustedHour > 24) {
+          adjustedHour -= 24;
+        }
+        return adjustedHour;
+      });
       const counts = data.map((item) => item.count);
 
       // Set the state with the formatted data
       setBarChartData({
-        labels: labels,
+        labels: adjustedLabels,
         datasets: [
           {
             label: "Track Count",
