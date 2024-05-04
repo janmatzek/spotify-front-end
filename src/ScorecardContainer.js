@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import LoadingIndicator from "./LoadingIndicator"; // Import LoadingIndicator component
 import { Heading } from "@chakra-ui/react";
-import { color } from "chart.js/helpers";
 
-const ScorecardContainer = () => {
+const ScorecardContainer = ({ timeframe }) => {
   // State for scorecard data
   const [scorecardData, setScorecardData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -27,7 +26,7 @@ const ScorecardContainer = () => {
 
   const fetchScorecardDataFromAPI = async () => {
     try {
-      const apiUrl = process.env.REACT_APP_SCORECARDS_URL + "last_24";
+      const apiUrl = process.env.REACT_APP_SCORECARDS_URL + timeframe;
       const response = await fetch(apiUrl);
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -59,6 +58,7 @@ const ScorecardContainer = () => {
   useEffect(() => {
     // Fetch scorecard data asynchronously
     const fetchScorecardData = async () => {
+      setLoading(true);
       try {
         // Call the fetch function
         const data = await fetchScorecardDataFromAPI();
@@ -72,7 +72,7 @@ const ScorecardContainer = () => {
 
     // Call the fetchScorecardData function
     fetchScorecardData();
-  }, []);
+  }, [timeframe]);
 
   const headingStyles = {
     as: "h2",
@@ -90,14 +90,20 @@ const ScorecardContainer = () => {
   // Render loading state, error state, or scorecard data
   return (
     <div className="scorecard-container">
-      {loading && <LoadingIndicator />}
-      {error && <div>Error fetching scorecards: {error.responseData}</div>}
-      {scorecardData.map((scorecard) => (
-        <div key={scorecard.id} className="scorecard">
-          <Heading {...headingStyles}>{scorecard.title}</Heading>
-          <Heading {...valueStyles}>{scorecard.value}</Heading>
-        </div>
-      ))}
+      {loading ? ( // If loading, render the loading indicator
+        <LoadingIndicator />
+      ) : (
+        // If not loading, render the scorecards
+        <>
+          {error && <div>Error fetching scorecards: {error.responseData}</div>}
+          {scorecardData.map((scorecard) => (
+            <div key={scorecard.id} className="scorecard">
+              <Heading {...headingStyles}>{scorecard.title}</Heading>
+              <Heading {...valueStyles}>{scorecard.value}</Heading>
+            </div>
+          ))}
+        </>
+      )}
     </div>
   );
 };

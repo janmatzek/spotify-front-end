@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Doughnut } from "react-chartjs-2";
 import LoadingIndicator from "./LoadingIndicator"; // Import LoadingIndicator component
 import { Heading } from "@chakra-ui/react";
+import { Chart, ArcElement } from "chart.js";
+Chart.register(ArcElement);
 
-const PieChartsContainer = () => {
-  const period = "last_24";
-
+const PieChartsContainer = ({ timeframe }) => {
   const [pieChartData1, setPieChartData1] = useState([]);
   const [pieChartData2, setPieChartData2] = useState([]);
   const [pieChartData3, setPieChartData3] = useState([]);
@@ -18,10 +18,14 @@ const PieChartsContainer = () => {
     setError(null); // Clear error state before initiating async requests
 
     Promise.all([
-      fetchPieChartDataFromAPI(process.env.REACT_APP_PIE_CONTEXT_URL + period),
-      fetchPieChartDataFromAPI(process.env.REACT_APP_PIE_ARISTS_URL + period),
       fetchPieChartDataFromAPI(
-        process.env.REACT_APP_PIE_RELEASE_YEARS_URL + period
+        process.env.REACT_APP_PIE_CONTEXT_URL + timeframe
+      ),
+      fetchPieChartDataFromAPI(
+        process.env.REACT_APP_PIE_ARISTS_URL + timeframe
+      ),
+      fetchPieChartDataFromAPI(
+        process.env.REACT_APP_PIE_RELEASE_YEARS_URL + timeframe
       ),
     ])
       .then(([contextData, artistsData, releaseYearsData]) => {
@@ -40,19 +44,6 @@ const PieChartsContainer = () => {
       });
   }, []);
 
-  const fetchPieChartData = async (chartNumber, setChartData, setLoading) => {
-    try {
-      setLoading(true);
-      const data = await fetchPieChartDataFromAPI(chartNumber);
-      setChartData(data);
-      setLoading(false);
-      setError(null);
-    } catch (error) {
-      setError(error);
-      setLoading(false);
-    }
-  };
-
   const fetchPieChartDataFromAPI = async (url) => {
     try {
       const response = await fetch(url);
@@ -69,8 +60,11 @@ const PieChartsContainer = () => {
 
   useEffect(() => {
     setError(null);
+    setLoading1(true);
+    setLoading2(true);
+    setLoading3(true);
 
-    fetchPieChartDataFromAPI(process.env.REACT_APP_PIE_CONTEXT_URL + period)
+    fetchPieChartDataFromAPI(process.env.REACT_APP_PIE_CONTEXT_URL + timeframe)
       .then((data) => {
         setPieChartData1(data);
         setLoading1(false);
@@ -81,7 +75,7 @@ const PieChartsContainer = () => {
         setLoading1(false);
       });
 
-    fetchPieChartDataFromAPI(process.env.REACT_APP_PIE_ARISTS_URL + period)
+    fetchPieChartDataFromAPI(process.env.REACT_APP_PIE_ARISTS_URL + timeframe)
       .then((data) => {
         setPieChartData2(data);
         setLoading2(false);
@@ -93,7 +87,7 @@ const PieChartsContainer = () => {
       });
 
     fetchPieChartDataFromAPI(
-      process.env.REACT_APP_PIE_RELEASE_YEARS_URL + period
+      process.env.REACT_APP_PIE_RELEASE_YEARS_URL + timeframe
     )
       .then((data) => {
         setPieChartData3(data);
@@ -104,7 +98,7 @@ const PieChartsContainer = () => {
         setError(error);
         setLoading3(false);
       });
-  }, []);
+  }, [timeframe]);
 
   const options = {
     plugins: {
@@ -120,6 +114,7 @@ const PieChartsContainer = () => {
     paddingTop: "10px",
     paddingBottom: "35px",
   };
+  const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#9966CC", "#FFA07A"];
 
   return (
     <div className="doughnut-charts-container">
@@ -135,8 +130,8 @@ const PieChartsContainer = () => {
               datasets: [
                 {
                   data: pieChartData1.map((item) => item.value),
-                  backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-                  hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+                  backgroundColor: colors,
+                  hoverBackgroundColor: colors,
                 },
               ],
             }}
@@ -156,8 +151,8 @@ const PieChartsContainer = () => {
               datasets: [
                 {
                   data: pieChartData2.map((item) => item.value),
-                  backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-                  hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+                  backgroundColor: colors,
+                  hoverBackgroundColor: colors,
                 },
               ],
             }}
@@ -167,7 +162,7 @@ const PieChartsContainer = () => {
       </div>
       {/* Doughnut Chart 3 */}
       <div className={`doughnut-chart ${loading3 ? "loading" : ""}`}>
-        <Heading {...headingStyles}>RELEASE YEARS</Heading>
+        <Heading {...headingStyles}>DECADES</Heading>
         {loading3 ? (
           <LoadingIndicator />
         ) : (
@@ -177,8 +172,8 @@ const PieChartsContainer = () => {
               datasets: [
                 {
                   data: pieChartData3.map((item) => item.value),
-                  backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-                  hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+                  backgroundColor: colors,
+                  hoverBackgroundColor: colors,
                 },
               ],
             }}

@@ -10,6 +10,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "chart.js": "^4.4.2",
+    "chartjs-chart-treemap": "^2.3.1",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "dotenv": "^16.4.5",
     "framer-motion": "^11.0.28",
     "react": "^18.2.0",
