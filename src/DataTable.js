@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td, Link } from "@chakra-ui/react";
 import LoadingIndicator from "./LoadingIndicator"; // Import LoadingIndicator component
 
-const DataTable = () => {
+const DataTable = ({ timeframe }) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const period = "last_24";
 
   useEffect(() => {
+    setLoading(true);
     fetchTableData();
-  }, []);
+  }, [timeframe]);
 
   const fetchTableData = async () => {
     try {
       // Simulate fetching data from an API
-      const response = await fetch(process.env.REACT_APP_TABLE_URL + period);
+      const response = await fetch(process.env.REACT_APP_TABLE_URL + timeframe);
       if (!response.ok) {
         throw new Error("Failed to fetch data");
       }

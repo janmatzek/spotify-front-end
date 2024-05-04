@@ -45,6 +45,13 @@
   height: 700px;
 }
 
+.periodSelector {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  z-index: 999; /* Ensure it's above other elements */
+}
+
 .scorecard-container {
   display: flex; /* Use Flexbox */
   width: 100%;
