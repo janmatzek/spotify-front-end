@@ -4,6 +4,8 @@ import PieChartsContainer from "./PieChartsContainer"; // Import PieChartsContai
 import BarChartContainer from "./BarChartContainer"; // Import BarChartContainer component
 import ScorecardContainer from "./ScorecardContainer"; // Import ScorecardContainer component
 import DataTable from "./DataTable"; // Import DataTable component
+import FavoriteArtists from "./FavoriteArtists";
+import GenresBarChart from "./GenresBar";
 import { Select } from "@chakra-ui/react";
 
 function App() {
@@ -18,34 +20,53 @@ function App() {
         <Select value={dropdownValue} onChange={handleSelectChange}>
           <option value="last_24">Last 24 hours</option>
           <option value="all_time">All time average</option>
+          <option value="artists">Artists & genres</option>
         </Select>
       </div>
       {/* Horizontal container for scorecards */}
-      <div className="scorecard-container">
-        <ScorecardContainer timeframe={dropdownValue} />
-      </div>
+      {dropdownValue !== "artists" ? (
+        <div className="scorecard-container">
+          <ScorecardContainer timeframe={dropdownValue} />
+        </div>
+      ) : null}
       {/* Left column containing doughnuts and bar chart */}
-      <div className="left-column">
-        {/* Two containers in one row */}
-        <div className="row-container">
-          {/* Vertical containers */}
-          <div className="column-container">
-            {/* Pie charts */}
-            <PieChartsContainer timeframe={dropdownValue} />
-          </div>
-          <div className="column-container">
-            {/* Bar chart */}
-            <BarChartContainer timeframe={dropdownValue} />
+      {dropdownValue !== "artists" ? (
+        <div className="left-column">
+          {/* Two containers in one row */}
+          <div className="row-container">
+            {/* Vertical containers */}
+            <div className="column-container">
+              {/* Pie charts */}
+              <PieChartsContainer timeframe={dropdownValue} />
+            </div>
+            <div className="column-container">
+              {/* Bar chart */}
+              <BarChartContainer timeframe={dropdownValue} />
+            </div>
           </div>
         </div>
-      </div>
+      ) : null}
 
       {/* Right column containing the table */}
-      <div className="right-column">
-        <div className="table-container">
-          <DataTable timeframe={dropdownValue} />
+      {dropdownValue !== "artists" ? (
+        <div className="right-column">
+          <div className="table-container">
+            <DataTable timeframe={dropdownValue} />
+          </div>
         </div>
-      </div>
+      ) : null}
+      {dropdownValue === "artists" ? (
+        <div className="artists-genre-page">
+          <div className="artists-table-column">
+            {/* Favourite artists */}
+            <FavoriteArtists />
+          </div>
+          <div className="genres-doughnut-column">
+            {/* Favourite genres */}
+            <GenresBarChart />
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }

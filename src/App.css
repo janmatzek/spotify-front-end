@@ -107,7 +107,11 @@
 }
 
 .doughnut-chart {
-  width: 27%;
+  width: 30%;
+}
+
+.doughnut-self {
+  padding-top: 5px;
 }
 
 .bar-chart-container {
@@ -119,4 +123,40 @@
 
 .table-container {
   height: 80vh;
+}
+
+.artists-genre-page {
+  padding-top: 150px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 1400px;
+  height: 700px;
+  position: relative;
+}
+
+.artists-table-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 600px;
+  padding-left: 5%;
+}
+.genres-doughnut-column {
+  width: 50%;
+  height: 600px;
+  padding-left: 2.5%;
+  padding-right: 5%;
+}
+
+.genres-bar-chart-container {
+  width: 100%;
+  padding-top: 16px;
+  height: 100%;
+}
+
+.genre-bar-chart {
+  width: 100%;
+  height: 100%;
 }
