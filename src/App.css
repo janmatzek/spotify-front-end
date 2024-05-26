@@ -38,125 +38,68 @@
 }
 
 .app-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 1400px;
-  height: 700px;
-  position: relative;
+  width: 100vw;
+  padding: 1vw;
 }
 
+.nav {
+  width: 100%;
+  justify-content: right;
+}
 .periodSelector {
-  position: absolute;
-  top: 40px;
-  right: 40px;
-  z-index: 999; /* Ensure it's above other elements */
+  margin-right: 5px;
+  width: 175;
 }
 
 .scorecard-container {
-  display: flex; /* Use Flexbox */
   width: 100%;
-  height: 150px;
-  justify-content: center; /* Align items to the center horizontally */
-  /* Leave the container background transparent */
-  padding-top: 10px;
-  padding-bottom: 20px; /* Add padding for spacing */
+  /* padding-bottom: 20px; */
 }
 
 .scorecard {
   width: 160px; /* Set a fixed width for each scorecard */
+  height: 90px;
   background-color: #f2f2f2; /* Light gray background for scorecards */
-  padding: 20px;
-  margin: 10px; /* Add some margin for spacing */
-  text-align: center; /* Center align text content */
-}
-
-/* container containing the two columns */
-.column-container {
-  height: 300px;
-  width: 100%;
-}
-
-/* Left column containing doughnuts and bar chart */
-.left-column {
-  flex: 1;
   display: flex;
   flex-direction: column;
-  width: 50%;
-  height: 600px;
-  padding-left: 5%;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  /* margin: 10px; */
 }
 
-/* Right column containing the table */
-.right-column {
-  flex: 1;
-  width: 50%;
-  height: 600px;
-  padding-left: 2.5%;
-  padding-right: 5%;
-}
-
-.row-container {
-  width: 100%;
-}
-
-.doughnut-charts-container {
-  display: flex;
-  justify-content: space-between;
-  height: 100%;
+.trackDataElements {
+  width: 100vw;
 }
 
 .doughnut-chart {
-  width: 30%;
+  width: 200px;
 }
 
-.doughnut-self {
-  padding-top: 5px;
-}
-
-.bar-chart-container {
-  height: 100%;
-  margin-bottom: 20px;
-  padding-bottom: 25px;
+.genres-bar-column {
   width: 100%;
-}
-
-.table-container {
-  height: 80vh;
-}
-
-.artists-genre-page {
-  padding-top: 150px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  width: 1400px;
-  height: 700px;
-  position: relative;
+  height: 100%;
+  padding-left: 2.5%;
+  padding-right: 5%;
 }
 
 .artists-table-column {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  height: 600px;
-  padding-left: 5%;
-}
-.genres-doughnut-column {
-  width: 50%;
-  height: 600px;
-  padding-left: 2.5%;
-  padding-right: 5%;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .genres-bar-chart-container {
   width: 100%;
   padding-top: 16px;
-  height: 100%;
+  height: 600px;
 }
 
 .genre-bar-chart {
   width: 100%;
   height: 100%;
+}
+
+.artists-table-column {
+  height: 600px;
 }

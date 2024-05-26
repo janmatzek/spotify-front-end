@@ -51,7 +51,7 @@ const GenresBarChart = () => {
     },
     maintainAspectRatio: false,
     responsive: true,
-    aspectRatio: 3, // Change the aspect ratio to adjust the height
+    // aspectRatio: 3, // Change the aspect ratio to adjust the height
   };
 
   const headingStyles = {
