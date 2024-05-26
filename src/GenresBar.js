@@ -56,7 +56,7 @@ const GenresBarChart = () => {
 
   const headingStyles = {
     as: "h2",
-    size: "sm",
+    size: ["xs", "sm"],
     paddingTop: "5px",
     paddingBottom: "20px",
   };
