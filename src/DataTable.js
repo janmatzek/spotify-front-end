@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Thead, Tbody, Tr, Th, Td, Link } from "@chakra-ui/react";
+import { Box, Table, Thead, Tbody, Tr, Th, Td, Link } from "@chakra-ui/react";
 import LoadingIndicator from "./LoadingIndicator"; // Import LoadingIndicator component
 
 const DataTable = ({ timeframe }) => {
@@ -36,33 +36,37 @@ const DataTable = ({ timeframe }) => {
       {loading ? (
         <LoadingIndicator />
       ) : (
-        <Table variant="simple" size="sm">
+        <Table variant="simple" size={("xs", "sm")}>
           <Thead>
             <Tr>
               <Th>TOP 5 TRACKS</Th>
               <Th>TRACK NAME</Th>
-              <Th>ALBUM</Th>
-              <Th>ARTIST</Th>
-              <Th>LINK</Th>
+              <Th display={{ base: "none", md: "table-cell" }}>ALBUM</Th>
+              <Th display={{ base: "none", md: "table-cell" }}>ARTIST</Th>
             </Tr>
           </Thead>
           <Tbody>
             {data.map((item, index) => (
               <Tr key={index}>
                 <Td>
-                  <img
-                    src={item.album_image_url}
-                    alt={item.name}
-                    style={{ maxWidth: "100px" }}
-                  />
+                  <Link href={item.track_url} isExternal>
+                    <img
+                      src={item.album_image_url}
+                      alt={item.name}
+                      style={{ maxWidth: "100px" }}
+                    />
+                  </Link>
                 </Td>
-                <Td>{item.track_name}</Td>
-                <Td>{item.album_name}</Td>
-                <Td>{item.artist_name}</Td>
                 <Td>
                   <Link href={item.track_url} isExternal>
-                    🎵
+                    {item.track_name}
                   </Link>
+                </Td>
+                <Td display={{ base: "none", md: "table-cell" }}>
+                  {item.album_name}
+                </Td>
+                <Td display={{ base: "none", md: "table-cell" }}>
+                  {item.artist_name}
                 </Td>
               </Tr>
             ))}

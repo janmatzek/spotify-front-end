@@ -49,9 +49,9 @@ const DoughnutChart = ({ title, url }) => {
 
   const headingStyles = {
     as: "h2",
-    size: "sm",
+    size: ["xs", "sm"],
     paddingTop: "10px",
-    paddingBottom: "35px",
+    paddingBottom: "2.5vh",
   };
 
   return (

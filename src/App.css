@@ -39,7 +39,10 @@
 
 .app-container {
   width: 100vw;
-  padding: 1vw;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
+  padding-left: 2vw;
+  padding-right: 2vw;
 }
 
 .nav {
@@ -47,7 +50,7 @@
   justify-content: right;
 }
 .periodSelector {
-  margin-right: 5px;
+  /* margin-right: 5px; */
   width: 175;
 }
 
@@ -74,7 +77,8 @@
 }
 
 .doughnut-chart {
-  width: 200px;
+  /* width: 200px; */
+  width: 100%;
 }
 
 .genres-bar-column {

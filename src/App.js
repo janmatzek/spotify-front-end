@@ -35,28 +35,33 @@ function App() {
         <Wrap spacing={4} className="trackDataElements" justify="center">
           <WrapItem
             width={{ base: "100%", md: "calc(50% - 20px)" }}
-            minWidth="500px"
+            minWidth={["400px", "500px"]}
           >
-            <Flex direction="column" alignItems="center" width="100%">
+            <Flex
+              direction="column"
+              alignItems="center"
+              width="100%"
+              minWidth={["400px", "500px"]}
+            >
               <Wrap
                 spacing={4}
                 justify="center"
                 className="doughnuts-container"
                 width="100%"
               >
-                <WrapItem>
+                <WrapItem width={["150px", "200px"]}>
                   <DoughnutChart
                     title="CONTEXT"
                     url={process.env.REACT_APP_PIE_CONTEXT_URL + dropdownValue}
                   />
                 </WrapItem>
-                <WrapItem>
+                <WrapItem width={["150px", "200px"]}>
                   <DoughnutChart
                     title="ARTISTS"
                     url={process.env.REACT_APP_PIE_ARISTS_URL + dropdownValue}
                   />
                 </WrapItem>
-                <WrapItem>
+                <WrapItem width={["150px", "200px"]}>
                   <DoughnutChart
                     title="DECADES"
                     url={
@@ -66,14 +71,14 @@ function App() {
                   />
                 </WrapItem>
               </Wrap>
-              <Box mt={4} width="100%">
-                <BarChartContainer timeframe={dropdownValue} width="100%" />
+              <Box mt={4} minWidth={["300px", "500px"]} width="90%">
+                <BarChartContainer timeframe={dropdownValue} />
               </Box>
             </Flex>
           </WrapItem>
           <WrapItem
             width={{ base: "100%", md: "calc(50% - 20px)" }}
-            minWidth="500px"
+            minWidth={["400px", "500px"]}
           >
             <DataTable timeframe={dropdownValue} />
           </WrapItem>
@@ -89,13 +94,13 @@ function App() {
         >
           <WrapItem
             width={{ base: "100%", md: "calc(50% - 20px)" }}
-            minWidth="550px"
+            minWidth={["400px", "550px"]}
           >
             <FavoriteArtists />
           </WrapItem>
           <WrapItem
             width={{ base: "100%", md: "calc(50% - 20px)" }}
-            minWidth="550px"
+            minWidth={["400px", "550px"]}
           >
             <GenresBarChart />
           </WrapItem>

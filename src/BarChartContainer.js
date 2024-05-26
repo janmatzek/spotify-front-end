@@ -104,7 +104,7 @@ const BarChartContainer = ({ timeframe }) => {
       },
       y: {
         title: {
-          display: true,
+          display: false,
           text: "Track Count",
         },
       },
@@ -118,7 +118,7 @@ const BarChartContainer = ({ timeframe }) => {
 
   const headingStyles = {
     as: "h2",
-    size: "sm",
+    size: ["xs", "sm"],
     paddingTop: "1vh",
     paddingBottom: "2vh",
   };

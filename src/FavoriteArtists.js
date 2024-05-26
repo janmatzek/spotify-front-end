@@ -37,36 +37,38 @@ const FavoriteArtists = () => {
       {loading ? (
         <LoadingIndicator />
       ) : (
-        <Table variant="simple" size="sm">
+        <Table variant="simple" size={["sm"]}>
           <Thead>
             <Tr>
               <Th>TOP 5 ARTISTS</Th>
               <Th>NAME</Th>
               <Th>BB INDEX</Th>
-              <Th>GENRE</Th>
+              <Th display={{ base: "none", md: "table-cell" }}>GENRE</Th>
               <Th>TRACKS PLAYED</Th>
-              <Th>LINK</Th>
             </Tr>
           </Thead>
           <Tbody>
             {data.map((item, index) => (
               <Tr key={index}>
                 <Td>
-                  <img
-                    src={item.images_url}
-                    alt={item.name}
-                    style={{ maxWidth: "100px" }}
-                  />
-                </Td>
-                <Td>{item.name}</Td>
-                <Td>{item.popularity}</Td>
-                <Td>{item.main_genre}</Td>
-                <Td>{item.count_tracks}</Td>
-                <Td>
                   <Link href={item.external_urls_spotify} isExternal>
-                    🎵
+                    <img
+                      src={item.images_url}
+                      alt={item.name}
+                      style={{ maxWidth: "100px" }}
+                    />
                   </Link>
                 </Td>
+                <Td>
+                  <Link href={item.external_urls_spotify} isExternal>
+                    {item.name}
+                  </Link>
+                </Td>
+                <Td>{item.popularity}</Td>
+                <Td display={{ base: "none", md: "table-cell" }}>
+                  {item.main_genre}
+                </Td>
+                <Td>{item.count_tracks}</Td>
               </Tr>
             ))}
           </Tbody>
