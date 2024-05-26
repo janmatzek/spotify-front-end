@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import LoadingIndicator from "./LoadingIndicator"; // Import LoadingIndicator component
-import { Heading, Flex, Wrap, WrapItem } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 
 const ScorecardContainer = ({ timeframe }) => {
   // State for scorecard data
@@ -89,26 +89,22 @@ const ScorecardContainer = ({ timeframe }) => {
 
   // Render loading state, error state, or scorecard data
   return (
-    <Flex justify="center" padding="20px" className="scorecard-container">
+    <div className="scorecard-container">
       {loading ? ( // If loading, render the loading indicator
         <LoadingIndicator />
       ) : (
         // If not loading, render the scorecards
         <>
           {error && <div>Error fetching scorecards: {error.responseData}</div>}
-          <Wrap spacing="20px" justify="center">
-            {scorecardData.map((scorecard) => (
-              <WrapItem key={scorecard.id}>
-                <Flex className="scorecard">
-                  <Heading {...headingStyles}>{scorecard.title}</Heading>
-                  <Heading {...valueStyles}>{scorecard.value}</Heading>
-                </Flex>
-              </WrapItem>
-            ))}
-          </Wrap>
+          {scorecardData.map((scorecard) => (
+            <div key={scorecard.id} className="scorecard">
+              <Heading {...headingStyles}>{scorecard.title}</Heading>
+              <Heading {...valueStyles}>{scorecard.value}</Heading>
+            </div>
+          ))}
         </>
       )}
-    </Flex>
+    </div>
   );
 };
 
