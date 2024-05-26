@@ -1,7 +1,7 @@
 import { Chart } from "chart.js/auto"; // Import Chart directly
 import React, { useState, useEffect } from "react";
 import { Bar } from "react-chartjs-2";
-import { Heading, Stack } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import LoadingIndicator from "./LoadingIndicator";
 
 const BarChartContainer = ({ timeframe }) => {
@@ -91,8 +91,8 @@ const BarChartContainer = ({ timeframe }) => {
   };
 
   const options = {
-    // responsive: true,
-    // maintainAspectRatio: false,
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
       x: {
         type: "category",
@@ -109,11 +109,6 @@ const BarChartContainer = ({ timeframe }) => {
         },
       },
     },
-    plugins: {
-      legend: {
-        display: false, // Hide the legend
-      },
-    },
   };
 
   const headingStyles = {
@@ -124,7 +119,7 @@ const BarChartContainer = ({ timeframe }) => {
   };
 
   return (
-    <Stack className="bar-chart-container">
+    <div className="bar-chart-container">
       <Heading {...headingStyles}>LISTENING TIME ({periodName})</Heading>
       {loading && <LoadingIndicator />}
       {error && <div>Error: {error.message}</div>}
@@ -133,7 +128,7 @@ const BarChartContainer = ({ timeframe }) => {
           <Bar data={barChartData} options={options} />
         </React.Fragment>
       )}
-    </Stack>
+    </div>
   );
 };
 

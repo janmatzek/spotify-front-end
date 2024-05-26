@@ -1,107 +1,73 @@
 import React, { useState } from "react";
 import "./App.css"; // Import your CSS file for styling
+import PieChartsContainer from "./PieChartsContainer"; // Import PieChartsContainer component
 import BarChartContainer from "./BarChartContainer"; // Import BarChartContainer component
-import DoughnutChart from "./Doughnut.js";
 import ScorecardContainer from "./ScorecardContainer"; // Import ScorecardContainer component
 import DataTable from "./DataTable"; // Import DataTable component
 import FavoriteArtists from "./FavoriteArtists";
 import GenresBarChart from "./GenresBar";
-import { Select, Box, Flex, Wrap, WrapItem } from "@chakra-ui/react";
+import { Select } from "@chakra-ui/react";
 
 function App() {
   const [dropdownValue, setDropdownValue] = useState("last_24");
-
   const handleSelectChange = (event) => {
     setDropdownValue(event.target.value);
   };
 
   return (
-    <Box className="app-container">
-      <Flex className="nav">
-        <Box className="periodSelector">
-          <Select value={dropdownValue} onChange={handleSelectChange}>
-            <option value="last_24">Last 24 hours</option>
-            <option value="all_time">All time average</option>
-            <option value="artists">Artists & genres</option>
-          </Select>
-        </Box>
-      </Flex>
+    <div className="app-container">
+      <div className="periodSelector">
+        <Select value={dropdownValue} onChange={handleSelectChange}>
+          <option value="last_24">Last 24 hours</option>
+          <option value="all_time">All time average</option>
+          <option value="artists">Artists & genres</option>
+        </Select>
+      </div>
+      {/* Horizontal container for scorecards */}
+      {dropdownValue !== "artists" ? (
+        <div className="scorecard-container">
+          <ScorecardContainer timeframe={dropdownValue} />
+        </div>
+      ) : null}
+      {/* Left column containing doughnuts and bar chart */}
+      {dropdownValue !== "artists" ? (
+        <div className="left-column">
+          {/* Two containers in one row */}
+          <div className="row-container">
+            {/* Vertical containers */}
+            <div className="column-container">
+              {/* Pie charts */}
+              <PieChartsContainer timeframe={dropdownValue} />
+            </div>
+            <div className="column-container">
+              {/* Bar chart */}
+              <BarChartContainer timeframe={dropdownValue} />
+            </div>
+          </div>
+        </div>
+      ) : null}
 
-      {dropdownValue !== "artists" && (
-        <ScorecardContainer timeframe={dropdownValue} />
-      )}
-
-      {dropdownValue !== "artists" && (
-        <Wrap spacing={4} className="trackDataElements" justify="center">
-          <WrapItem
-            width={{ base: "100%", md: "calc(50% - 20px)" }}
-            minWidth="500px"
-          >
-            <Flex direction="column" alignItems="center" width="100%">
-              <Wrap
-                spacing={4}
-                justify="center"
-                className="doughnuts-container"
-                width="100%"
-              >
-                <WrapItem>
-                  <DoughnutChart
-                    title="CONTEXT"
-                    url={process.env.REACT_APP_PIE_CONTEXT_URL + dropdownValue}
-                  />
-                </WrapItem>
-                <WrapItem>
-                  <DoughnutChart
-                    title="ARTISTS"
-                    url={process.env.REACT_APP_PIE_ARISTS_URL + dropdownValue}
-                  />
-                </WrapItem>
-                <WrapItem>
-                  <DoughnutChart
-                    title="DECADES"
-                    url={
-                      process.env.REACT_APP_PIE_RELEASE_YEARS_URL +
-                      dropdownValue
-                    }
-                  />
-                </WrapItem>
-              </Wrap>
-              <Box mt={4} width="100%">
-                <BarChartContainer timeframe={dropdownValue} width="100%" />
-              </Box>
-            </Flex>
-          </WrapItem>
-          <WrapItem
-            width={{ base: "100%", md: "calc(50% - 20px)" }}
-            minWidth="500px"
-          >
+      {/* Right column containing the table */}
+      {dropdownValue !== "artists" ? (
+        <div className="right-column">
+          <div className="table-container">
             <DataTable timeframe={dropdownValue} />
-          </WrapItem>
-        </Wrap>
-      )}
-
-      {dropdownValue === "artists" && (
-        <Wrap
-          spacing={4}
-          className="artists-genre-page"
-          justify="center"
-          mt={1}
-        >
-          <WrapItem
-            width={{ base: "100%", md: "calc(50% - 20px)" }}
-            minWidth="550px"
-          >
+          </div>
+        </div>
+      ) : null}
+      {dropdownValue === "artists" ? (
+        <div className="artists-genre-page">
+          <div className="artists-table-column">
+            {/* Favourite artists */}
             <FavoriteArtists />
-          </WrapItem>
-          <WrapItem
-            width={{ base: "100%", md: "calc(50% - 20px)" }}
-            minWidth="550px"
-          >
+          </div>
+          <div className="genres-doughnut-column">
+            {/* Favourite genres */}
             <GenresBarChart />
-          </WrapItem>
-        </Wrap>
-      )}
-    </Box>
+          </div>
+        </div>
+      ) : null}
+    </div>
   );
 }
 
