@@ -76,7 +76,7 @@ const ScorecardContainer = ({ timeframe }) => {
 
   const headingStyles = {
     as: "h2",
-    size: "sm",
+    size: ["xs", "sm"],
     paddingTop: "10px",
   };
 
@@ -99,7 +99,7 @@ const ScorecardContainer = ({ timeframe }) => {
           <Wrap spacing="20px" justify="center">
             {scorecardData.map((scorecard) => (
               <WrapItem key={scorecard.id}>
-                <Flex className="scorecard">
+                <Flex className="scorecard" width={["135px", "160px"]}>
                   <Heading {...headingStyles}>{scorecard.title}</Heading>
                   <Heading {...valueStyles}>{scorecard.value}</Heading>
                 </Flex>
