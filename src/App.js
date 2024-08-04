@@ -49,19 +49,28 @@ function App() {
                 className="doughnuts-container"
                 width="100%"
               >
-                <WrapItem width={["150px", "200px"]}>
+                <WrapItem
+                  width={["150px", "200px"]}
+                  minHeight={["150px", "200px"]}
+                >
                   <DoughnutChart
                     title="CONTEXT"
                     url={process.env.REACT_APP_PIE_CONTEXT_URL + dropdownValue}
                   />
                 </WrapItem>
-                <WrapItem width={["150px", "200px"]}>
+                <WrapItem
+                  width={["150px", "200px"]}
+                  minHeight={["150px", "200px"]}
+                >
                   <DoughnutChart
                     title="ARTISTS"
                     url={process.env.REACT_APP_PIE_ARISTS_URL + dropdownValue}
                   />
                 </WrapItem>
-                <WrapItem width={["150px", "200px"]}>
+                <WrapItem
+                  width={["150px", "200px"]}
+                  minHeight={["150px", "200px"]}
+                >
                   <DoughnutChart
                     title="DECADES"
                     url={
