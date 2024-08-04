@@ -56,7 +56,9 @@ const DoughnutChart = ({ title, url }) => {
 
   return (
     <div className={`doughnut-chart ${loading ? "loading" : ""}`}>
-      <Heading {...headingStyles}>{title}</Heading>
+      <Heading {...headingStyles} marginBottom={loading ? "7.5vh" : "2.5vh"}>
+        {title}
+      </Heading>
       {loading ? (
         <LoadingIndicator />
       ) : (

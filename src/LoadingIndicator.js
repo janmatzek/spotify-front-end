@@ -1,7 +1,7 @@
 import React from "react";
 import { Spinner } from "@chakra-ui/react";
 
-const LoadingIndicator = () => {
+const LoadingIndicator = ({ size = "xl", color = "pink.300" }) => {
   return (
     <div
       style={{
@@ -12,8 +12,8 @@ const LoadingIndicator = () => {
       }}
     >
       <Spinner
-        size="xl"
-        color="teal.500"
+        size={size}
+        color={color}
         thickness="4px"
         speed="0.65s"
         emptyColor="gray.200"

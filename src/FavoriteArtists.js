@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Table, Thead, Tbody, Tr, Th, Td, Link } from "@chakra-ui/react";
+import { Table, Thead, Tbody, Tr, Th, Td, Link, Flex } from "@chakra-ui/react";
 import LoadingIndicator from "./LoadingIndicator"; // Import LoadingIndicator component
 
 const FavoriteArtists = () => {
@@ -35,7 +35,9 @@ const FavoriteArtists = () => {
     <div className="artists-table-container">
       {/* <Heading {...headingStyles}>TOP 5 TRACKS</Heading> */}
       {loading ? (
-        <LoadingIndicator />
+        <Flex marginLeft={["50vw", "25vw"]} marginTop="30vh">
+          <LoadingIndicator />
+        </Flex>
       ) : (
         <Table variant="simple" size={["sm"]}>
           <Thead>
